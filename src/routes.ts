@@ -10,6 +10,11 @@ import { CreateCategoryController } from "./controllers/category/CreateCategoryC
 import { EditCategoryController } from "./controllers/category/EditCategoryController";
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
 import { RemoveCategoryController } from "./controllers/category/RemoveCategoryController";
+import { CreateProductController } from "./controllers/product/CreateProductController";
+import { EditProductController } from "./controllers/product/EditProductController";
+import { ListProductByCategoryController } from "./controllers/product/ListProductByCategoryController";
+import { ListProductsController } from "./controllers/product/ListProductsController";
+import { RemoveProductController } from "./controllers/product/RemoveProductController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -27,5 +32,11 @@ router.post("/category", isAuthenticated, new CreateCategoryController().handle)
 router.put("/category/edit", isAuthenticated, new EditCategoryController().handle);
 router.get("/category/all", isAuthenticated, new ListCategoryController().handle);
 router.delete("/category/remove", isAuthenticated, new RemoveCategoryController().handle);
+
+router.post("/product", isAuthenticated, upload.single("file"), new CreateProductController().handle);
+router.put("/product/edit", isAuthenticated, upload.single("file"), new EditProductController().handle);
+router.get("/product", isAuthenticated, new ListProductByCategoryController().handle);
+router.get("/products", isAuthenticated, new ListProductsController().handle);
+router.delete("/product/remove", isAuthenticated, new RemoveProductController().handle);
 
 export { router };
