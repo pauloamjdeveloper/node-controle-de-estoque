@@ -9,7 +9,7 @@ class ListProductsService {
         amount: true
       },
       orderBy: {
-        create_at: "desc",
+        created_at: "desc",
       },
     });
     return products;

@@ -16,18 +16,17 @@ model User {
   email    String
   password String
 
-  create_at DateTime? @default(now())
-  update_at DateTime? @default(now())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   @@map("users")
 }
 
 model Category {
-  id   String @id @default(uuid())
-  name String
-
-  create_at DateTime? @default(now())
-  update_at DateTime? @default(now())
+  id         String    @id @default(uuid())
+  name       String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   products Product[]
 
@@ -35,31 +34,31 @@ model Category {
 }
 
 model Product {
-  id          String @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   price       String
   description String
   banner      String
   amount      Int
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @default(now())
 
-  create_at DateTime? @default(now())
-  update_at DateTime? @default(now())
+  category Category @relation(fields: [category_id], references: [id])
 
-  category    Category @relation(fields: [category_id], references: [id])
   category_id String
+  items       Item[]
 
-  @@map("products")
-  items Item[]
+  @@map("products ")
 }
 
 model Item {
-  id     String @id @default(uuid())
-  amount Int
-
-  create_at DateTime? @default(now())
-  update_at DateTime? @default(now())
+  id         String    @id @default(uuid())
+  amount     Int
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   product Product @relation(fields: [product_id], references: [id])
+
   product_id String
 
   @@map("items")
