@@ -17,7 +17,7 @@ CREATE TABLE "categories" (
 );
 
 -- CreateTable
-CREATE TABLE "products " (
+CREATE TABLE "products" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "price" TEXT NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE "products " (
     "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
     "category_id" TEXT NOT NULL,
-    CONSTRAINT "products _category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -37,5 +37,5 @@ CREATE TABLE "items" (
     "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
     "product_id" TEXT NOT NULL,
-    CONSTRAINT "items_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products " ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "items_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
